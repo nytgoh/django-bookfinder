@@ -1,0 +1,17 @@
+﻿<form method="post">
+    {% csrf_token %}
+    {% load get_item from template_filters %}
+    {{ form }}
+    <input type="submit" value="Submit">
+    <p>Total books found from search: {{totalItems}}</p>
+    <p>Showing Top 10:</p>
+    <ul>
+        {% for book in books %}
+        <li>
+            {% for key in bookKeys %}
+                <b>{{key}}</b>: {{ book | get_item:key }}<br/>
+            {% endfor %}
+        </li> <br/>
+        {% endfor %}
+    </ul>
+</form>
